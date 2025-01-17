@@ -1,7 +1,5 @@
 #!/bin/env bash
 
-set -e
-
 echo "This script comes with no warranty whatsoever. If you break your machine with it, I take no responsibility. Do not use this script without first reading and understanding the entirety of its contents!"
 echo
 
@@ -33,9 +31,12 @@ select device in "$devices" cancel; do case $REPLY in
     ;;
   *)
     echo
-    devicename=$(echo $device | awk '{ print $2 }')
-    echo "Selected $devicename"
-    break
+    if [[ ! -z "$device" ]]; then
+      devicename=$(echo $device | awk '{ print $2 }')
+      echo "Selected $devicename"
+      break
+    fi
+    echo -e "\nInvalid option"
     ;;
 esac; done
 
@@ -71,7 +72,7 @@ select option in "Memtest86" "Steam Deck Recovery Image" cancel; do case $REPLY 
     exit
     ;;
   *)
-    echo "Invalid option"
+    echo -e "\nInvalid option"
     ;;
 esac; done
 
