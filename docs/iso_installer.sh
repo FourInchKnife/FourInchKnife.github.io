@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+set -e
+
 echo "This script comes with no warranty whatsoever. If you break your machine with it, I take no responsibility. Do not use this script without first reading and understanding the entirety of its contents!"
 echo
 
