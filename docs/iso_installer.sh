@@ -20,7 +20,7 @@ function errexit {
 trap 'goodbye' EXIT
 trap 'errexit' ERR
 
-
+function main {
 
 devices=$(lsblk | grep -E '^sd' | awk '{ print "path: /dev/"$1, "size: "$4 }')
 PS3="Select the device to write to: "
@@ -84,4 +84,8 @@ if [[ ! "$doit" = "y" ]]; then
 fi
 
 echo "Writing data..."
-sudo dd bs=4096 status=progress if="$file" of="$devicename"
+sudo dd bs=128M status=progress if="$file" of="$devicename"
+
+}
+
+main
